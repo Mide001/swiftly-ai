@@ -2,6 +2,7 @@
 const express = require("express");
 const OpenAI = require("openai");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 // Load environment variables from a .env file if present
 dotenv.config();
@@ -16,6 +17,10 @@ const openai = new OpenAI({
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
+// Enable CORS for all routes
+app.use(cors());
+
 
 app.post(
   "/api/generate-summary/:name/:amount/:walletAddress",
